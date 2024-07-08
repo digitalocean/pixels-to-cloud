@@ -1,0 +1,24 @@
+syntax = "proto3";
+package pixbox;
+
+// Storage service provides functionalities to manage image storage.
+service  Storage{
+    rpc Upload(Image) returns (StorageResponse);
+    rpc Download(ImageRequest) returns (Image);
+}
+
+// Image represents the data structure for an image to be uploaded.
+message Image{
+    string name = 1;
+    bytes data = 2;
+}
+
+// StorageResponse is the response message for storage operations.
+message StorageResponse {
+    string status = 1; 
+}
+
+// ImageRequest is the request message for downloading an image.
+message ImageRequest {
+    string image_id = 1;
+}
